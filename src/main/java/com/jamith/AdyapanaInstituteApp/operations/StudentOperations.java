@@ -18,8 +18,22 @@ public class StudentOperations {
         }
     }
 
+    public static ResultSet getAllStudents() {
+        ResultSet resultSet = null;
+        try {
+            Statement statement = DatabaseConnection.getConnection().createStatement();
+            String query = "SELECT Sno, Name, Address, dob FROM Student";
+            resultSet = statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return resultSet;
+    }
+
     // Add Student
-    public void addStudent(String name, String address, Date dob) {
+    public void addStudent(String name, String address, java.util.Date dob) {
         try {
             String query = "INSERT INTO Student (Name, Address, dob) VALUES (?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -48,7 +62,7 @@ public class StudentOperations {
     }
 
     // Update Student
-    public void updateStudent(int sno, String name, String address, Date dob) {
+    public void updateStudent(int sno, String name, String address, java.util.Date dob) {
         try {
             String query = "UPDATE Student SET Name = ?, Address = ?, dob = ? WHERE Sno = ?";
             PreparedStatement pstmt = conn.prepareStatement(query);

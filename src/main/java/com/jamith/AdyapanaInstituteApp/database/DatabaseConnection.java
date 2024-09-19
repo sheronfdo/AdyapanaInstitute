@@ -9,13 +9,13 @@ public class DatabaseConnection {
 
     private static final String dbHost = "localhost";
     private static final String port = "3306";
-    private static final String dbName = "infoplus";
+    private static final String dbName = "adyapanainstitute";
     private static final String userName = "root";
     private static final String password = "Jamith@5000";
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        connect();
-    }
+//    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+//        connect();
+//    }
 
     public static void connect() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
