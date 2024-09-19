@@ -31,7 +31,7 @@ public class AdyapanaInstituteApp {
         mainFrame.setJMenuBar(menuBar);
 
         // Panels
-        JPanel studentPanel = StudentUI.getStudentPanel();
+        JPanel studentPanel = new StudentUI();
         JPanel teacherPanel = TeacherUI.getTeacherPanel();
         JPanel subjectPanel = SubjectUI.getSubjectPanel();
         JPanel classPanel = ClassUI.getClassPanel();
