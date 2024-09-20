@@ -49,11 +49,13 @@ public class StudentOperations {
 
     // Search Student
     public ResultSet searchStudent(String name) {
+        System.out.println(name);
         ResultSet rs = null;
         try {
-            String query = "SELECT * FROM Student WHERE Name LIKE ?";
+            String query = "SELECT * FROM Student WHERE Name LIKE '%"+name+"%'";
+            System.out.println(query);
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, "%" + name + "%");
+//            pstmt.setString(1, name );
             rs = pstmt.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
