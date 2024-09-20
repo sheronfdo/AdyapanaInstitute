@@ -3,10 +3,7 @@ package com.jamith.AdyapanaInstituteApp.operations;
 import com.jamith.AdyapanaInstituteApp.database.DatabaseConnection;
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ClassOperations {
     private Connection conn;
@@ -19,32 +16,70 @@ public class ClassOperations {
         }
     }
 
-    // Add Class
-    public void addClass(int subno, int tno, String timeslot) {
+    public void addClass(int subNo, int tNo, String timeslot) {
+        String query = "INSERT INTO Class (SubNo, Tno, Timeslot) VALUES (?, ?, ?)";
         try {
-            String query = "INSERT INTO Class (Subno, Tno, Timeslot) VALUES (?, ?, ?)";
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, subno);
-            pstmt.setInt(2, tno);
-            pstmt.setString(3, timeslot);
-            pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Class Added Successfully");
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, subNo);
+            statement.setInt(2, tNo);
+            statement.setString(3, timeslot);
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    // Search Class by Subject
-    public ResultSet searchClassBySubject(int subno) {
-        ResultSet rs = null;
+    // Method to update an existing class
+    public void updateClass(int classNo, int subNo, int tNo, String timeslot) {
+        String query = "UPDATE Class SET SubNo = ?, Tno = ?, Timeslot = ? WHERE ClassNo = ?";
         try {
-            String query = "SELECT * FROM Class WHERE Subno = ?";
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, subno);
-            rs = pstmt.executeQuery();
+
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, subNo);
+            statement.setInt(2, tNo);
+            statement.setString(3, timeslot);
+            statement.setInt(4, classNo);
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return rs;
+    }
+
+    // Method to delete a class
+    public void deleteClass(int classNo) {
+        String query = "DELETE FROM Class WHERE ClassNo = ?";
+        try {
+
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, classNo);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to retrieve all classes
+    public ResultSet getAllClasses() {
+        String query = "SELECT * FROM Class";
+        try {
+            Statement statement = conn.createStatement();
+            return statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // Method to search classes by timeslot
+    public ResultSet searchClassByTimeslot(String timeslot) {
+        String query = "SELECT * FROM Class WHERE Timeslot LIKE ?";
+        try {
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, "%" + timeslot + "%");
+            return statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

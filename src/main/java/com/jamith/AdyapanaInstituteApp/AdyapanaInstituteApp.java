@@ -1,6 +1,7 @@
 package com.jamith.AdyapanaInstituteApp;
 
 import com.jamith.AdyapanaInstituteApp.UI.*;
+import com.jamith.AdyapanaInstituteApp.screen.Class;
 import com.jamith.AdyapanaInstituteApp.screen.Home;
 import com.jamith.AdyapanaInstituteApp.screen.Student;
 import com.jamith.AdyapanaInstituteApp.screen.Subject;
@@ -13,7 +14,7 @@ public class AdyapanaInstituteApp {
     public static void main(String[] args) {
         JFrame mainFrame = new JFrame("Adyapana Institute Management System");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(1150, 700);
+        mainFrame.setSize(1150, 760);
         mainFrame.setLayout(new BorderLayout());
 
         // Menu for Navigation
@@ -39,7 +40,7 @@ public class AdyapanaInstituteApp {
         JPanel studentPanel = new Student();
         JPanel teacherPanel = new Teacher();
         JPanel subjectPanel = new Subject();
-        JPanel classPanel = ClassUI.getClassPanel();
+        JPanel classPanel = new Class();
         JPanel paymentPanel = PaymentUI.getPaymentPanel();
         mainFrame.setContentPane(home);
         // Add ActionListeners for Menu Navigation
