@@ -3,6 +3,7 @@ package com.jamith.AdyapanaInstituteApp;
 import com.jamith.AdyapanaInstituteApp.UI.*;
 import com.jamith.AdyapanaInstituteApp.screen.Home;
 import com.jamith.AdyapanaInstituteApp.screen.Student;
+import com.jamith.AdyapanaInstituteApp.screen.Subject;
 import com.jamith.AdyapanaInstituteApp.screen.Teacher;
 
 import javax.swing.*;
@@ -37,7 +38,7 @@ public class AdyapanaInstituteApp {
         JPanel home = new Home();
         JPanel studentPanel = new Student();
         JPanel teacherPanel = new Teacher();
-        JPanel subjectPanel = SubjectUI.getSubjectPanel();
+        JPanel subjectPanel = new Subject();
         JPanel classPanel = ClassUI.getClassPanel();
         JPanel paymentPanel = PaymentUI.getPaymentPanel();
         mainFrame.setContentPane(home);

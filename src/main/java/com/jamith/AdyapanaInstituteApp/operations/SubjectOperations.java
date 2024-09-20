@@ -3,10 +3,7 @@ package com.jamith.AdyapanaInstituteApp.operations;
 import com.jamith.AdyapanaInstituteApp.database.DatabaseConnection;
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class SubjectOperations {
     private Connection conn;
@@ -75,5 +72,19 @@ public class SubjectOperations {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ResultSet getAllSubjects() {
+        ResultSet resultSet = null;
+        try {
+            Statement statement = DatabaseConnection.getConnection().createStatement();
+            String query = "SELECT Subno, Description, Price FROM Subject";
+            resultSet = statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return resultSet;
     }
 }

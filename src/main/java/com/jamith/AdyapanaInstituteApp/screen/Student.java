@@ -99,6 +99,11 @@ public class Student extends javax.swing.JPanel {
                 "Student No", "Name", "Address", "DOB"
             }
         ));
+        studentTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentTableMouseClicked(evt);
+            }
+        });
         studentTableScroll.setViewportView(studentTable);
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
@@ -298,6 +303,10 @@ public class Student extends javax.swing.JPanel {
             studentTable.setModel(searchModel);
         }
     }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void studentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_studentTableMouseClicked
 
     private void refreshStudentTable() {
         DefaultTableModel updatedModel = (DefaultTableModel) studentTable.getModel();
