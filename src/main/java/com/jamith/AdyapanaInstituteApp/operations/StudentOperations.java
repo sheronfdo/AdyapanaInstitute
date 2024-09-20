@@ -18,7 +18,7 @@ public class StudentOperations {
         }
     }
 
-    public static ResultSet getAllStudents() {
+    public ResultSet getAllStudents() {
         ResultSet resultSet = null;
         try {
             Statement statement = DatabaseConnection.getConnection().createStatement();

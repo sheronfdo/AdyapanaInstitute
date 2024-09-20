@@ -25,6 +25,7 @@ public class Student extends javax.swing.JPanel {
      */
     public Student() {
         initComponents();
+        clearFields();
         refreshStudentTable();
     }
 
