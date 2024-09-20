@@ -53,7 +53,7 @@ public class Student extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Add Student");
+        jLabel2.setText("Student");
 
         jLabel3.setText("No");
 

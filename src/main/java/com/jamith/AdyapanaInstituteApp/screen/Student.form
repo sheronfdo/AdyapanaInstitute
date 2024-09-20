@@ -138,7 +138,7 @@
           <Font name="Yu Gothic" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Add Student"/>
+        <Property name="text" type="java.lang.String" value="Student"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
