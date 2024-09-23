@@ -42,6 +42,8 @@ public class Subject extends javax.swing.JPanel {
      */
     public Subject() {
         initComponents();
+        refreshSubjectTable();
+        clearFields();
     }
 
     /**
@@ -88,6 +90,7 @@ public class Subject extends javax.swing.JPanel {
         jLabel5.setText("Description");
 
         subnoField.setText("jTextField1");
+        subnoField.setEditable(false);
 
         priceField.setText("jTextField1");
 

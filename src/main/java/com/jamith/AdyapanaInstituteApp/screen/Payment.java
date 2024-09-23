@@ -5,6 +5,13 @@
  */
 package com.jamith.AdyapanaInstituteApp.screen;
 
+import com.jamith.AdyapanaInstituteApp.operations.PaymentOperations;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Dell
@@ -16,6 +23,8 @@ public class Payment extends javax.swing.JPanel {
      */
     public Payment() {
         initComponents();
+        refreshPaymentTable();
+        clearFields();
     }
 
     /**
@@ -33,17 +42,17 @@ public class Payment extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        classNoField = new javax.swing.JTextField();
-        subNoField = new javax.swing.JTextField();
-        tNoField = new javax.swing.JTextField();
-        timeslotField = new javax.swing.JTextField();
+        snoField = new javax.swing.JTextField();
+        subnoField = new javax.swing.JTextField();
+        tnoField = new javax.swing.JTextField();
+        valueField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        classTable = new javax.swing.JTable();
+        paymentTable = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        updateButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        timeslotField1 = new javax.swing.JTextField();
+        monthField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(32767, 688));
@@ -64,13 +73,13 @@ public class Payment extends javax.swing.JPanel {
 
         jLabel6.setText("Value");
 
-        classNoField.setText("jTextField1");
+        snoField.setText("jTextField1");
 
-        subNoField.setText("jTextField1");
+        subnoField.setText("jTextField1");
 
-        tNoField.setText("jTextField1");
+        tnoField.setText("jTextField1");
 
-        timeslotField.setText("jTextField1");
+        valueField.setText("jTextField1");
 
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -79,27 +88,27 @@ public class Payment extends javax.swing.JPanel {
             }
         });
 
-        classTable.setModel(new javax.swing.table.DefaultTableModel(
+        paymentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Student No", "Teacher No", "Subject No", "Month", "Value"
+                "Invoice No", "Student No", "Teacher No", "Subject No", "Month", "Value"
             }
         ));
-        jScrollPane1.setViewportView(classTable);
+        jScrollPane1.setViewportView(paymentTable);
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("All Payment");
 
-        updateButton.setText("Edit");
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
+        editButton.setText("Edit");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
+                editButtonActionPerformed(evt);
             }
         });
 
@@ -110,7 +119,7 @@ public class Payment extends javax.swing.JPanel {
             }
         });
 
-        timeslotField1.setText("jTextField1");
+        monthField.setText("jTextField1");
 
         jLabel8.setText("Month");
 
@@ -131,21 +140,21 @@ public class Payment extends javax.swing.JPanel {
                                     .addComponent(jLabel3))
                                 .addGap(78, 78, 78)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(classNoField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tNoField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(snoField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tnoField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(71, 71, 71)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel8))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(timeslotField1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(monthField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(37, 37, 37)
                                         .addComponent(jLabel6)
                                         .addGap(27, 27, 27)
-                                        .addComponent(timeslotField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(subNoField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(valueField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(subnoField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(0, 0, Short.MAX_VALUE))))
@@ -155,7 +164,7 @@ public class Payment extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(45, 45, 45)
-                                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
                                 .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -172,23 +181,23 @@ public class Payment extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(classNoField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(snoField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(subNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(subnoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3)))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(timeslotField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(tNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tnoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(timeslotField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(monthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
-                    .addComponent(updateButton)
+                    .addComponent(editButton)
                     .addComponent(deleteButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,76 +208,82 @@ public class Payment extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        String subNo = subNoField.getText();
-        String tNo = tNoField.getText();
-        String timeslot = timeslotField.getText();
+        int sno = Integer.parseInt(snoField.getText());
+        int tno = Integer.parseInt(tnoField.getText());
+        int subno = Integer.parseInt(subnoField.getText());
+        String month = monthField.getText();
+        double value = Double.parseDouble(valueField.getText());
 
-        if (subNo.isEmpty() || tNo.isEmpty() || timeslot.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill in all fields", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            try {
-                // Add the class to the database
-                new ClassOperations().addClass(Integer.parseInt(subNo), Integer.parseInt(tNo), timeslot);
-                refreshClassTable();
-                clearFields();
-                JOptionPane.showMessageDialog(this, "Class added successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Please enter valid Subject No and Teacher No", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+        new PaymentOperations().addPayment(sno, tno, subno, month, value);
+        refreshPaymentTable();
+        clearFields();
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        int selectedRow = classTable.getSelectedRow();
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        int selectedRow = paymentTable.getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a class from the table to update", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            // Get class ID from the selected row
-            int classNo = (int) classTable.getValueAt(selectedRow, 0); // Assuming first column is class ID
-            String subNo = subNoField.getText();
-            String tNo = tNoField.getText();
-            String timeslot = timeslotField.getText();
-
-            if (subNo.isEmpty() || tNo.isEmpty() || timeslot.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please fill in all fields", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                try {
-                    // Update the class in the database
-                    new ClassOperations().updateClass(classNo, Integer.parseInt(subNo), Integer.parseInt(tNo), timeslot);
-                    refreshClassTable();
-                    clearFields();
-                    JOptionPane.showMessageDialog(this, "Class updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(this, "Please enter valid Subject No and Teacher No", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
+            JOptionPane.showMessageDialog(Payment.this, "Please select a payment to update.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-    }//GEN-LAST:event_updateButtonActionPerformed
+
+        int invoiceNo = (int) paymentTable.getValueAt(selectedRow, 0);
+        int sno = Integer.parseInt(snoField.getText());
+        int tno = Integer.parseInt(tnoField.getText());
+        int subno = Integer.parseInt(subnoField.getText());
+        String month = monthField.getText();
+        double value = Double.parseDouble(valueField.getText());
+
+       new PaymentOperations().updatePayment(invoiceNo, sno, tno, subno, month, value);
+        refreshPaymentTable();
+        clearFields();
+    }//GEN-LAST:event_editButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        int selectedRow = classTable.getSelectedRow();
+        int selectedRow = paymentTable.getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a class from the table to delete", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            // Get class ID from the selected row
-            int classNo = (int) classTable.getValueAt(selectedRow, 0); // Assuming first column is class ID
-            int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this class?", "Delete Confirmation", JOptionPane.YES_NO_OPTION);
-            if (confirmation == JOptionPane.YES_OPTION) {
-                // Delete the class from the database
-                new ClassOperations().deleteClass(classNo);
-                refreshClassTable();
-                clearFields();
-                JOptionPane.showMessageDialog(this, "Class deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(Payment.this, "Please select a payment to delete.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+
+        int invoiceNo = (int) paymentTable.getValueAt(selectedRow, 0);
+        new PaymentOperations().deletePayment(invoiceNo);
+        refreshPaymentTable();
+        clearFields();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
+    private void refreshPaymentTable() {
+        DefaultTableModel updatedModel = (DefaultTableModel) paymentTable.getModel();
+        updatedModel.setRowCount(0);
+        ResultSet resultSet = new PaymentOperations().getAllPayments();
+        try {
+            while (resultSet.next()) {
+                int invoiceNo = resultSet.getInt("InvoiceNo");
+                int sno = resultSet.getInt("Sno");
+                int tno = resultSet.getInt("Tno");
+                int subno = resultSet.getInt("Subno");
+                String month = resultSet.getString("Month");
+                double value = resultSet.getDouble("Value");
+
+                updatedModel.addRow(new Object[]{invoiceNo, sno, tno, subno, month, value});
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        paymentTable.setModel(updatedModel);
+    }
+
+    private void clearFields() {
+        snoField.setText("");
+        tnoField.setText("");
+        subnoField.setText("");
+        monthField.setText("");
+        valueField.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
-    private javax.swing.JTextField classNoField;
-    private javax.swing.JTable classTable;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JButton editButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -278,10 +293,11 @@ public class Payment extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField subNoField;
-    private javax.swing.JTextField tNoField;
-    private javax.swing.JTextField timeslotField;
-    private javax.swing.JTextField timeslotField1;
-    private javax.swing.JButton updateButton;
+    private javax.swing.JTextField monthField;
+    private javax.swing.JTable paymentTable;
+    private javax.swing.JTextField snoField;
+    private javax.swing.JTextField subnoField;
+    private javax.swing.JTextField tnoField;
+    private javax.swing.JTextField valueField;
     // End of variables declaration//GEN-END:variables
 }

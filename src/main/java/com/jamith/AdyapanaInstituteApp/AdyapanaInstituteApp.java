@@ -1,11 +1,8 @@
 package com.jamith.AdyapanaInstituteApp;
 
 import com.jamith.AdyapanaInstituteApp.UI.*;
+import com.jamith.AdyapanaInstituteApp.screen.*;
 import com.jamith.AdyapanaInstituteApp.screen.Class;
-import com.jamith.AdyapanaInstituteApp.screen.Home;
-import com.jamith.AdyapanaInstituteApp.screen.Student;
-import com.jamith.AdyapanaInstituteApp.screen.Subject;
-import com.jamith.AdyapanaInstituteApp.screen.Teacher;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,19 +33,34 @@ public class AdyapanaInstituteApp {
         mainFrame.setJMenuBar(menuBar);
 
         // Panels
-        JPanel home = new Home();
+        JPanel home = new Home(mainFrame);
         JPanel studentPanel = new Student();
         JPanel teacherPanel = new Teacher();
         JPanel subjectPanel = new Subject();
         JPanel classPanel = new Class();
-        JPanel paymentPanel = PaymentUI.getPaymentPanel();
+        JPanel paymentPanel = new Payment();
         mainFrame.setContentPane(home);
         // Add ActionListeners for Menu Navigation
-        studentMenu.addActionListener(e -> mainFrame.setContentPane(studentPanel));
-        teacherMenu.addActionListener(e -> mainFrame.setContentPane(teacherPanel));
-        subjectMenu.addActionListener(e -> mainFrame.setContentPane(subjectPanel));
-        classMenu.addActionListener(e -> mainFrame.setContentPane(classPanel));
-        paymentMenu.addActionListener(e -> mainFrame.setContentPane(paymentPanel));
+        studentMenu.addActionListener(e -> {
+            mainFrame.setContentPane(studentPanel);
+            mainFrame.setVisible(true);
+        });
+        teacherMenu.addActionListener(e -> {
+            mainFrame.setContentPane(teacherPanel);
+            mainFrame.setVisible(true);
+        });
+        subjectMenu.addActionListener(e -> {
+            mainFrame.setContentPane(subjectPanel);
+            mainFrame.setVisible(true);
+        });
+        classMenu.addActionListener(e -> {
+            mainFrame.setContentPane(classPanel);
+            mainFrame.setVisible(true);
+        });
+        paymentMenu.addActionListener(e -> {
+            mainFrame.setContentPane(paymentPanel);
+            mainFrame.setVisible(true);
+        });
 
         mainFrame.setVisible(true);
     }

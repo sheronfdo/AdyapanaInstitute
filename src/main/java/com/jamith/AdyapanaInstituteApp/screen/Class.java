@@ -39,6 +39,8 @@ public class Class extends javax.swing.JPanel {
      */
     public Class() {
         initComponents();
+        refreshClassTable();
+        clearFields();
     }
 
     /**
@@ -87,6 +89,7 @@ public class Class extends javax.swing.JPanel {
         jLabel6.setText("Timeslot");
 
         classNoField.setText("jTextField1");
+        classNoField.setEditable(false);
 
         subNoField.setText("jTextField1");
 

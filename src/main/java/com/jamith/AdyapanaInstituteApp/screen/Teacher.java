@@ -93,6 +93,7 @@ public class Teacher extends javax.swing.JPanel {
         jLabel6.setText("Subject");
 
         tnoField.setText("jTextField1");
+        tnoField.setEditable(false);
 
         nameField.setText("jTextField1");
 
