@@ -119,6 +119,11 @@ public class Teacher extends javax.swing.JPanel {
                         "Teacher No", "Name", "Address", "Subject"
                 }
         ));
+        teacherTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                teacherTableMouseClicked(evt);
+            }
+        });
         teacherTableScroll.setViewportView(teacherTable);
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
@@ -310,18 +315,13 @@ public class Teacher extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_searchButtonActionPerformed
 
-//    teacherTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//        @Override
-//        public void valueChanged(ListSelectionEvent event) {
-//            if (!event.getValueIsAdjusting() && teacherTable.getSelectedRow() != -1) {
-//                int selectedRow = teacherTable.getSelectedRow();
-//                tnoField.setText(model.getValueAt(selectedRow, 0).toString()); // Teacher ID (auto-generated)
-//                nameField.setText(model.getValueAt(selectedRow, 1).toString());
-//                addressField.setText(model.getValueAt(selectedRow, 2).toString());
-//                subjectsField.setText(model.getValueAt(selectedRow, 3).toString());
-//            }
-//        }
-//    });
+    private void teacherTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentTableMouseClicked
+        int selectedRow = teacherTable.getSelectedRow();
+        tnoField.setText(teacherTable.getValueAt(selectedRow, 0).toString()); // Teacher ID (auto-generated)
+        nameField.setText(teacherTable.getValueAt(selectedRow, 1).toString());
+        addressField.setText(teacherTable.getValueAt(selectedRow, 2).toString());
+        subjectsField.setText(teacherTable.getValueAt(selectedRow, 3).toString());
+    }//GEN-LAST:event_studentTableMouseClicked
 
     private void refreshTeacherTable() {
         // Clear existing data

@@ -115,6 +115,11 @@ public class Class extends javax.swing.JPanel {
                         "Class No", "Subject No", "Teacher No", "Timeslot"
                 }
         ));
+        classTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                classTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(classTable);
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
@@ -278,6 +283,14 @@ public class Class extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void classTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentTableMouseClicked
+        int selectedRow = classTable.getSelectedRow();
+        classNoField.setText(classTable.getValueAt(selectedRow, 0).toString()); // Class No
+        subNoField.setText(classTable.getValueAt(selectedRow, 1).toString());
+        tNoField.setText(classTable.getValueAt(selectedRow, 2).toString());
+        timeslotField.setText(classTable.getValueAt(selectedRow, 3).toString());
+    }//GEN-LAST:event_studentTableMouseClicked
 
     private void refreshClassTable() {
         DefaultTableModel updatedModel = (DefaultTableModel) classTable.getModel();

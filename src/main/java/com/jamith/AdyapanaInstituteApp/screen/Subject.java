@@ -315,7 +315,10 @@ public class Subject extends javax.swing.JPanel {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void subjectTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subjectTableMouseClicked
-        // TODO add your handling code here:
+        int selectedRow = subjectTable.getSelectedRow();
+        subnoField.setText(subjectTable.getValueAt(selectedRow, 0).toString()); // Subject ID (auto-generated)
+        descriptionField.setText(subjectTable.getValueAt(selectedRow, 1).toString());
+        priceField.setText(subjectTable.getValueAt(selectedRow, 2).toString());
     }//GEN-LAST:event_subjectTableMouseClicked
 
     private void refreshSubjectTable() {

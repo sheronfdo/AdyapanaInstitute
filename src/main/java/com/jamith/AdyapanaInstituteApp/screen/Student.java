@@ -305,7 +305,11 @@ public class Student extends javax.swing.JPanel {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void studentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentTableMouseClicked
-        // TODO add your handling code here:
+        int selectedRow = studentTable.getSelectedRow();
+        snoField.setText(studentTable.getValueAt(selectedRow, 0).toString()); // Student ID (auto-generated)
+        nameField.setText(studentTable.getValueAt(selectedRow, 1).toString());
+        addressField.setText(studentTable.getValueAt(selectedRow, 2).toString());
+        dobField.setText(studentTable.getValueAt(selectedRow, 3).toString());
     }//GEN-LAST:event_studentTableMouseClicked
 
     private void refreshStudentTable() {

@@ -99,6 +99,11 @@ public class Payment extends javax.swing.JPanel {
                 "Invoice No", "Student No", "Teacher No", "Subject No", "Month", "Value"
             }
         ));
+        paymentTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paymentTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(paymentTable);
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
@@ -250,6 +255,15 @@ public class Payment extends javax.swing.JPanel {
         refreshPaymentTable();
         clearFields();
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void paymentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentTableMouseClicked
+        int selectedRow = paymentTable.getSelectedRow();
+        snoField.setText(paymentTable.getValueAt(selectedRow, 1).toString());
+        tnoField.setText(paymentTable.getValueAt(selectedRow, 2).toString());
+        subnoField.setText(paymentTable.getValueAt(selectedRow, 3).toString());
+        monthField.setText(paymentTable.getValueAt(selectedRow, 4).toString());
+        valueField.setText(paymentTable.getValueAt(selectedRow, 5).toString());
+    }//GEN-LAST:event_studentTableMouseClicked
 
     private void refreshPaymentTable() {
         DefaultTableModel updatedModel = (DefaultTableModel) paymentTable.getModel();
