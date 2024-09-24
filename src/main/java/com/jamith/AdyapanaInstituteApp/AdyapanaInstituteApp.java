@@ -1,6 +1,5 @@
 package com.jamith.AdyapanaInstituteApp;
 
-import com.jamith.AdyapanaInstituteApp.UI.*;
 import com.jamith.AdyapanaInstituteApp.screen.*;
 import com.jamith.AdyapanaInstituteApp.screen.Class;
 
