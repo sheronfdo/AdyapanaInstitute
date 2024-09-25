@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.jamith.AdyapanaInstituteApp.screen;
 
-import com.jamith.AdyapanaInstituteApp.operations.StudentOperations;
 import com.jamith.AdyapanaInstituteApp.operations.TeacherOperations;
 
 import javax.swing.*;
@@ -13,9 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * @author Dell
- */
+
 public class Teacher extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
