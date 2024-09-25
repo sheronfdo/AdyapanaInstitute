@@ -1,11 +1,20 @@
 package com.jamith.AdyapanaInstituteApp.screen;
 
 import com.jamith.AdyapanaInstituteApp.operations.PaymentOperations;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.logging.Logger;
 
 public class Payment extends javax.swing.JPanel {
 
@@ -45,6 +54,7 @@ public class Payment extends javax.swing.JPanel {
         deleteButton = new javax.swing.JButton();
         monthField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        printButton = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(32767, 688));
         setPreferredSize(new java.awt.Dimension(1125, 688));
@@ -119,6 +129,13 @@ public class Payment extends javax.swing.JPanel {
 
         jLabel8.setText("Month");
 
+        printButton.setText("Print");
+        printButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,7 +179,9 @@ public class Payment extends javax.swing.JPanel {
                                 .addGap(45, 45, 45)
                                 .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
-                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 963, Short.MAX_VALUE)))))
@@ -194,7 +213,8 @@ public class Payment extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
                     .addComponent(editButton)
-                    .addComponent(deleteButton))
+                    .addComponent(deleteButton)
+                    .addComponent(printButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -256,6 +276,26 @@ public class Payment extends javax.swing.JPanel {
         valueField.setText(paymentTable.getValueAt(selectedRow, 5).toString());
     }//GEN-LAST:event_studentTableMouseClicked
 
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+        HashMap map = new HashMap();
+        map.put("studentNo", snoField.getText());
+        map.put("subjectNo", subnoField.getText());
+        map.put("teacherNo", tnoField.getText());
+        map.put("month", monthField.getText());
+        map.put("value", valueField.getText());
+        try {
+            JasperDesign design = JRXmlLoader.load("src\\main\\resources\\report\\AdyapanaInstitute.jrxml");
+            JasperReport jreport = JasperCompileManager.compileReport(design);
+            JasperPrint jprint = JasperFillManager.fillReport(jreport, map, new JREmptyDataSource());
+            JasperViewer.viewReport(jprint, false);
+//            JasperPrintManager.printReport(jprint, false);
+        } catch (JRException ex) {
+            throw new RuntimeException(ex);
+        } catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }//GEN-LAST:event_printButtonActionPerformed
+
     private void refreshPaymentTable() {
         DefaultTableModel updatedModel = (DefaultTableModel) paymentTable.getModel();
         updatedModel.setRowCount(0);
@@ -300,6 +340,7 @@ public class Payment extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField monthField;
     private javax.swing.JTable paymentTable;
+    private javax.swing.JButton printButton;
     private javax.swing.JTextField snoField;
     private javax.swing.JTextField subnoField;
     private javax.swing.JTextField tnoField;

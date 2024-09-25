@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AdyapanaInstitute" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9ca79e93-e4bc-4a68-81d6-a7fb99161dd7">
+	<parameter name="studentNo" class="java.lang.String"/>
+	<parameter name="subjectNo" class="java.lang.String"/>
+	<parameter name="teacherNo" class="java.lang.String"/>
+	<parameter name="month" class="java.lang.String"/>
+	<parameter name="value" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="85" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="0" width="594" height="80" uuid="d787ea71-4446-4c00-a5b0-9837d60ec99b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Adyapana Institute]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-20" y="79" width="595" height="1" uuid="ce8668ca-1234-462e-a79b-6bf919c6adc1"/>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="150" splitType="Stretch">
+			<textField>
+				<reportElement x="210" y="-5" width="111" height="30" uuid="f4e4962a-f8cc-44e8-a33c-a9c90d35e632"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{studentNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="25" width="111" height="30" uuid="8dba2108-f6a6-4ae7-a5f8-b4c7c7210328"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{subjectNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="55" width="111" height="30" uuid="4fd7fede-18a9-451a-bf33-ce6d041e838a"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{teacherNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="85" width="111" height="30" uuid="ca57b003-4513-49b1-9782-4c77c14bae1b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{month}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="115" width="111" height="30" uuid="6a8e3b80-3889-44ec-90f3-840bdf8bac52"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{value}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-20" y="146" width="595" height="1" uuid="c66025dc-4b3b-4e73-8660-95a6d5a53a88"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="-5" width="100" height="30" uuid="21b186d3-6c50-4d0a-91e0-b87017179b60"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Student No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="25" width="100" height="30" uuid="c5224ace-be0a-4de1-9cc4-bdd46c3806e1"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="55" width="100" height="30" uuid="1d12ab4a-e3bb-4c4a-98bc-9097359bb7f4"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Teacher No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="85" width="100" height="30" uuid="7c6cae6e-d15a-445a-bf26-3dcfae563ae4"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Month]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="115" width="100" height="30" uuid="f235a4ec-8470-43c2-aafc-67248e4ca54e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Value]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="55" width="110" height="30" uuid="5c60f40c-f076-46dc-b714-bcb3c1691533"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="-5" width="110" height="30" uuid="0f949a31-2dfa-4957-a957-db0c943ab149"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="25" width="110" height="30" uuid="329ba5ae-3486-4e8b-bc16-d48eda1bcbd2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="85" width="110" height="30" uuid="327e9cb9-cbba-4ffa-9a84-e542bac95980"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="115" width="110" height="30" uuid="41dbe7d8-2b41-428e-8cc5-e8bd440c6836"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[=]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="-3" width="594" height="30" uuid="6b3ed28f-6032-4568-a643-27907fbe40ca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Thank You]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
